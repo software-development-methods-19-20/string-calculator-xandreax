@@ -11,9 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AddNumbersTest {
 
     @Test
-    void emptyString() {
-        assertThat(StringCalculator.add(""), is(0));
-    }
+    void emptyString() { assertThat(StringCalculator.add(""), is(0)); }
 
     @Test
     void oneNumber() {
@@ -21,7 +19,12 @@ public class AddNumbersTest {
     }
 
     @Test
-    void twoNumbers() {
-        assertThat(StringCalculator.add("1,2"), is(3));
-    }
+    void twoNumbers() { assertThat(StringCalculator.add("1,2"), is(3)); }
+
+    @Test
+    void manynumbers() { assertThat(StringCalculator.add("1,2,3,4,5"), is(15)); }
+
+    //@Test
+    //void newline() { assertThat(StringCalculator.add("1,2\n3,4\n1,1"), is (12));}
+
 }
