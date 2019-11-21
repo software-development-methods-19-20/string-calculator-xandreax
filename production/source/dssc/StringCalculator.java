@@ -12,26 +12,27 @@ public class StringCalculator {
         }
         else if(numbers.charAt(0)=='/'){
             String alternativeRegex = String.valueOf(numbers.charAt(2));
-            Pattern pattern = Pattern.compile(alternativeRegex);
-            String[] tokens = pattern.split(numbers.substring(4));
-            int somma=0;
-            for (String token : tokens) {
-                if(!token.equals("")) {
-                    somma = somma + Integer.parseInt(token);
-                }
-            }
-            return somma;
+            return splitString(numbers, alternativeRegex);
         }
         else{
-            Pattern pattern = Pattern.compile(regex);
-            String[] tokens = pattern.split(numbers);
-            int somma=0;
-            for (String token : tokens) {
-                if(!token.equals("")) {
-                    somma = somma + Integer.parseInt(token);
-                }
-            }
-            return somma;
+            return splitString(numbers, regex);
         }
+    }
+    private static int splitString (String numbers, String regex){
+        Pattern pattern = Pattern.compile(regex);
+        String[] tokens;
+        if(regex.equals("(,|\\R)")){
+            tokens = pattern.split(numbers);
+        }
+        else{
+            tokens = pattern.split(numbers.substring(4));
+        }
+        int somma=0;
+        for (String token : tokens) {
+            if(!token.equals("")) {
+                somma = somma + Integer.parseInt(token);
+            }
+        }
+        return somma;
     }
 }
