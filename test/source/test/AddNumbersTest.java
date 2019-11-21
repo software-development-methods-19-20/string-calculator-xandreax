@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class AddNumbersTest {
@@ -24,7 +23,7 @@ public class AddNumbersTest {
     @Test
     void manynumbers() { assertThat(StringCalculator.add("1,2,3,4,5"), is(15)); }
 
-    //@Test
-    //void newline() { assertThat(StringCalculator.add("1,2\n3,4\n1,1"), is (12));}
+    @Test
+    void newline() { assertThat(StringCalculator.add("1,2\n3,4\n1,1"), is (12));}
 
 }
