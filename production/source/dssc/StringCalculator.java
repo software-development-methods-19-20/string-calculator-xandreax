@@ -6,16 +6,26 @@ import java.util.stream.Stream;
 
 public class StringCalculator {
 
-    private static final String regex = "(,|\\R)";
+    private static final String defaultRegex = "(,|\\R)";
+/*
+    public static void main(String[] args) {
+        // Prove varie ed eventuali
 
+        String numbers = "//[:::]\n1:::2:::3";
+        String alternativeRegex = numbers.substring(numbers.indexOf('/')+2, numbers.indexOf('\n'));
+        String pattern = numbers.substring(numbers.indexOf('\n')+1);
+        System.out.println(alternativeRegex);
+        System.out.println(pattern);
+    }
+*/
     public static int add(String numbers) {
             if (numbers.isEmpty()) {
                 return 0;
             } else if (numbers.charAt(0) == '/') {
-                String alternativeRegex = String.valueOf(numbers.charAt(2));
+                String alternativeRegex = numbers.substring(numbers.indexOf('[')+1, numbers.indexOf(']'));
                 return splitString(numbers, alternativeRegex);
             } else {
-                return splitString(numbers, regex);
+                return splitString(numbers, defaultRegex);
             }
     }
 
@@ -26,7 +36,7 @@ public class StringCalculator {
             tokens = Stream.of(pattern.split(numbers));
         }
         else{
-            tokens = Stream.of(pattern.split(numbers.substring(4)));
+            tokens = Stream.of(pattern.split(numbers.substring(numbers.indexOf('\n')+1)));
         }
         int[] intTokens = tokens.filter(x-> !x.equals("")).mapToInt(Integer::parseInt).toArray();
         if(IntStream.of(intTokens).anyMatch(x -> x<0)){
